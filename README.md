@@ -13,7 +13,7 @@ git clone https://gitlab.com/marianogg9/airflow-in-ecs local_dir
 
 - Fill in the required input values:
 
-**locals.tf**
+  **locals.tf**
   - `instance-type` (for the EC2 ASGs).
   - `ecs-ami` (for the EC2 ASGs launch templates, taken from (AWS official documentation)[https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-ami-versions.html]).
   - `default_vpc_id` (your existing VPC id).
@@ -23,10 +23,10 @@ git clone https://gitlab.com/marianogg9/airflow-in-ecs local_dir
   - `log_configuration.options.region` (same as above, but for CloudWatch Logs).
   - `aws_key_pair_name` (an existing EC2 key pair. If left empty, SSH traffic is not allowed from outside the default VPC).
 
-**terraform-backend.tf**
+  **terraform-backend.tf**
   - fill in your S3 Terraform bucket, tfstate fine name and DynamoDB table.
 
-**provider.tf**
+  **provider.tf**
   - `provider["aws"].region`, the region you are deploying resources to.
 
 - Run Terraform

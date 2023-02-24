@@ -1,0 +1,12 @@
+repos:
+  - repo: https://github.com/terraform-docs/terraform-docs
+    rev: v0.16.0
+    hooks:
+      - id: terraform-docs-go
+        args: ["markdown","--output-file", "README.md","--hide","inputs", "."]
+  - repo: local
+    hooks:
+      - id: terraform fmt
+        name: tf fmt
+        language: system
+        entry: bash -c 'terraform fmt'

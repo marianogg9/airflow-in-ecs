@@ -1,4 +1,4 @@
-# airflow-ecs-tf
+# Airflow in ECS
 
 This repo contains a working Airflow installation in AWS ECS using a combination of EC2 and Fargate launch types.
 
@@ -45,9 +45,6 @@ $ terraform init && terraform apply
 ```bash
 terraform destroy
 ```
-
-## ToDo
-- HTTPS support.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

@@ -6,7 +6,7 @@ resource "aws_ecs_task_definition" "redis" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   task_role_arn            = aws_iam_role.redis-task-role.arn
-  container_definitions = data.template_file.redis_container_definitions.rendered
+  container_definitions    = data.template_file.redis_container_definitions.rendered
 }
 
 data "template_file" "redis_container_definitions" {

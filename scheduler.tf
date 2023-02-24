@@ -16,7 +16,7 @@ resource "aws_ecs_task_definition" "scheduler" {
 data "template_file" "scheduler_container_definitions" {
   template = file("task-definitions/scheduler-container-definitions.tpl")
   vars = {
-    secrets = jsonencode(local.container_secrets)
+    secrets           = jsonencode(local.container_secrets)
     log_configuration = jsonencode(local.log_configuration)
   }
 }

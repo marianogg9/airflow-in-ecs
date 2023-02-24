@@ -11,14 +11,23 @@ Please have a look at the (article)[blog] I wrote for more information and an ex
 git clone https://gitlab.com/marianogg9/airflow-in-ecs local_dir
 ```
 
-- Fill in the required input values (`locals.tf`):
+- Fill in the required input values:
+
+**locals.tf**
   - `instance-type` (for the EC2 ASGs).
   - `ecs-ami` (for the EC2 ASGs launch templates, taken from (AWS official documentation)[https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-ami-versions.html]).
   - `default_vpc_id` (your existing VPC id).
   - `subnetsIDs` (the subnets you want to deploy to).
   - `custom_cidr` (your public IP, to connect to Webserver and Flower, also grants SSH connectivity to EC2 instances. If empty, only private VPC traffic is allowed).
   - `user_data_vars.region` (AWS region where the DAG S3 bucket is being created, used in `s3fs-fuse` mount configuration).
+  - `log_configuration.options.region` (same as above, but for CloudWatch Logs).
   - `aws_key_pair_name` (an existing EC2 key pair. If left empty, SSH traffic is not allowed from outside the default VPC).
+
+**terraform-backend.tf**
+  - fill in your S3 Terraform bucket, tfstate fine name and DynamoDB table.
+
+**provider.tf**
+  - `provider["aws"].region`, the region you are deploying resources to.
 
 - Run Terraform
 ```bash
@@ -57,9 +66,9 @@ terraform destroy
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | n/a |
-| <a name="provider_template"></a> [template](#provider\_template) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.55.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
+| <a name="provider_template"></a> [template](#provider\_template) | 2.2.0 |
 
 ## Modules
 
@@ -132,7 +141,12 @@ No modules.
 | [aws_iam_policy_document.scheduler_inline_policy_secrets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_key_pair.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/key_pair) | data source |
 | [aws_vpc.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
+| [template_file.flower_container_definitions](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.postgres_container_definitions](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.redis_container_definitions](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.scheduler_container_definitions](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.webserver_container_definitions](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.worker_container_definitions](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
 ## Outputs
 

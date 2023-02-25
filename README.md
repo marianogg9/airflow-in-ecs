@@ -2,7 +2,7 @@
 
 This repo contains a working Airflow installation in AWS ECS using a combination of EC2 and Fargate launch types.
 
-Please have a look at the (article)[blog] I wrote for more information and an example run.
+Please have a look at the (article)[https://blog.mariano.cloud/airflow-in-ecs-with-redis-part-2-hands-on] I wrote for more information and an example run.
 
 ## How to deploy
 

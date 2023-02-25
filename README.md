@@ -2,7 +2,7 @@
 
 This repo contains a working Airflow installation in AWS ECS using a combination of EC2 and Fargate launch types.
 
-Please have a look at the (article)[https://blog.mariano.cloud/airflow-in-ecs-with-redis-part-2-hands-on] I wrote for more information and an example run.
+Please have a look at the [article](https://blog.mariano.cloud/airflow-in-ecs-with-redis-part-2-hands-on) I wrote for more information and an example run.
 
 ## How to deploy
 
@@ -15,7 +15,7 @@ git clone https://gitlab.com/marianogg9/airflow-in-ecs local_dir
 
   **locals.tf**
   - `instance-type` (for the EC2 ASGs).
-  - `ecs-ami` (for the EC2 ASGs launch templates, taken from (AWS official documentation)[https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-ami-versions.html]).
+  - `ecs-ami` (for the EC2 ASGs launch templates, taken from [AWS Official documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-ami-versions.html)).
   - `default_vpc_id` (your existing VPC id).
   - `subnetsIDs` (the subnets you want to deploy to).
   - `custom_cidr` (your public IP, to connect to Webserver and Flower, also grants SSH connectivity to EC2 instances. If empty, only private VPC traffic is allowed).

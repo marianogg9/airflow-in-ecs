@@ -63,7 +63,7 @@
         },
         "secrets": [],
         "dependsOn": [],
-        "user": "501:0",
+        "user": "50000:0",
         "dnsServers": [],
         "dnsSearchDomains": [],
         "extraHosts": [],

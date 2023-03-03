@@ -11,7 +11,7 @@
         ],
         "command": [
             "-c",
-            "function ver() {\n  printf \"%04d%04d%04d%04d\" $${1//./ }\n}\none_meg=1048576\nmem_available=$(($(getconf _PHYS_PAGES) * $(getconf PAGE_SIZE) / one_meg))\ncpus_available=$(grep -cE 'cpu[0-9]+' /proc/stat)\ndisk_available=$(df / | tail -1 | awk '{print $4}')\nwarning_resources=\"false\"\nif (( mem_available < 4000 )) ; then\n  echo\n  echo -e \"\\033[1;33mWARNING!!!: Not enough memory available for Docker.\\e[0m\"\n  echo \"At least 4GB of memory required. You have $(numfmt --to iec $((mem_available * one_meg)))\"\n  echo\n  warning_resources=\"true\"\nfi\nif (( cpus_available < 2 )); then\n  echo\n  echo -e \"\\033[1;33mWARNING!!!: Not enough CPUS available for Docker.\\e[0m\"\n  echo \"At least 2 CPUs recommended. You have $${cpus_available}\"\n  echo\n  warning_resources=\"true\"\nfi\nif (( disk_available < one_meg * 10 )); then\n  echo\n  echo -e \"\\033[1;33mWARNING!!!: Not enough Disk space available for Docker.\\e[0m\"\n  echo \"At least 10 GBs recommended. You have $(numfmt --to iec $((disk_available * 1024 )))\"\n  echo\n  warning_resources=\"true\"\nfi\nif [[ $${warning_resources} == \"true\" ]]; then\n  echo\n  echo -e \"\\033[1;33mWARNING!!!: You have not enough resources to run Airflow (see above)!\\e[0m\"\n  echo \"Please follow the instructions to increase amount of resources available:\"\n  echo \"   https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#before-you-begin\"\n  echo\nfi\nmkdir -p /opt/airflow/dags\nchown -R \"501:0\" /opt/airflow/dags\nexec /entrypoint airflow scheduler"
+            "function ver() {\n  printf \"%04d%04d%04d%04d\" $${1//./ }\n}\none_meg=1048576\nmem_available=$(($(getconf _PHYS_PAGES) * $(getconf PAGE_SIZE) / one_meg))\ncpus_available=$(grep -cE 'cpu[0-9]+' /proc/stat)\ndisk_available=$(df / | tail -1 | awk '{print $4}')\nwarning_resources=\"false\"\nif (( mem_available < 4000 )) ; then\n  echo\n  echo -e \"\\033[1;33mWARNING!!!: Not enough memory available for Docker.\\e[0m\"\n  echo \"At least 4GB of memory required. You have $(numfmt --to iec $((mem_available * one_meg)))\"\n  echo\n  warning_resources=\"true\"\nfi\nif (( cpus_available < 2 )); then\n  echo\n  echo -e \"\\033[1;33mWARNING!!!: Not enough CPUS available for Docker.\\e[0m\"\n  echo \"At least 2 CPUs recommended. You have $${cpus_available}\"\n  echo\n  warning_resources=\"true\"\nfi\nif (( disk_available < one_meg * 10 )); then\n  echo\n  echo -e \"\\033[1;33mWARNING!!!: Not enough Disk space available for Docker.\\e[0m\"\n  echo \"At least 10 GBs recommended. You have $(numfmt --to iec $((disk_available * 1024 )))\"\n  echo\n  warning_resources=\"true\"\nfi\nif [[ $${warning_resources} == \"true\" ]]; then\n  echo\n  echo -e \"\\033[1;33mWARNING!!!: You have not enough resources to run Airflow (see above)!\\e[0m\"\n  echo \"Please follow the instructions to increase amount of resources available:\"\n  echo \"   https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#before-you-begin\"\n  echo\nfi\nmkdir -p /opt/airflow/dags\nchown -R \"50000:0\" /opt/airflow/dags\nexec /entrypoint airflow scheduler"
         ],
         "environment": [
             {
@@ -77,7 +77,7 @@
         },
         "secrets": ${secrets},
         "dependsOn": [],
-        "user": "501:0",
+        "user": "50000:0",
         "dnsServers": [],
         "dnsSearchDomains": [],
         "extraHosts": [],

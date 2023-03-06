@@ -36,7 +36,7 @@ $ terraform init && terraform apply
 
 - Accessing Webserver/Flower
   
-  Using terraform output `nlb_cname`, if you provided a `local.custom_cidr`:
+  Using terraform output `nlb_cname`:
 
   - Webserver
   ```bash
